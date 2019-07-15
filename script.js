@@ -66,22 +66,28 @@ function displayQuestion(){
   if(currentScore > maxScore){
     console.log("score too high");
     var $elem = $('#swan');
-    $({deg: 0}).animate({deg: 1080}, {
+    $({deg: 0}).animate({deg: 720}, {
         duration: 2000,
         step: function(now) {
             $elem.css({
                 transform: 'rotate(' + now + 'deg)',
-                top: $elem.position().top + now/10
+                top: now/2
             });
         }
     });
   }
   else{
-    showQuestion();
-    $('#questionText')[0].innerHTML = questions[currentQuestion][0];
-    $('#answer1')[0].innerHTML = "&#163;" + questions[currentQuestion][1];
-    $('#answer2')[0].innerHTML = "&#163;" + questions[currentQuestion][2];
-    $('#answer3')[0].innerHTML = "&#163;" + questions[currentQuestion][3];
-    currentQuestion += 1;
+    if(currentQuestion < questions.length){
+      showQuestion();
+      $('#questionText')[0].innerHTML = questions[currentQuestion][0];
+      $('#answer1')[0].innerHTML = "&#163;" + questions[currentQuestion][1];
+      $('#answer2')[0].innerHTML = "&#163;" + questions[currentQuestion][2];
+      $('#answer3')[0].innerHTML = "&#163;" + questions[currentQuestion][3];
+      currentQuestion += 1;
+    }
+    else{
+      //end
+      console.log("Complete");
+    }
   }
 }
