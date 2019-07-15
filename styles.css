@@ -1,0 +1,92 @@
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.imageHolder{
+  position: absolute;
+  width: 100vw;
+  height: 50vh;
+  overflow: hidden;
+}
+
+#gameSection{
+  height: 50vh;
+  width: 100vw;
+  background-color: lightblue;
+}
+
+#hill, #swan, #background{
+  position: relative;
+}
+
+#hill{
+  top: calc(100% - 360px);
+  left: calc(50% + 25px);
+}
+
+#background{
+  top: calc(100% - 226px);
+  left: calc(50% + 25px);
+}
+
+#swan{
+  top: calc(100% - 50px);
+  left: 50%;
+}
+
+#questionSection{
+  height: 50vh;
+  padding: 20px;
+}
+
+#questionText{
+  width: 100%;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+button{
+  display: inline-block;
+  margin-bottom: 0;
+  padding: 0.6em 1em;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  color: #002147;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: #FFF;
+  background-image: none;
+  box-shadow: none;
+  text-shadow: none;
+  font-size: 14px;
+  line-height: 1.42857;
+
+  background-color: #EAEAEA;
+  width: 100%;
+  margin-top: 20px;
+}
+
+body{
+  margin: 0;
+  overflow: hidden;
+}
