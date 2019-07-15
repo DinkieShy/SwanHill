@@ -54,10 +54,11 @@ function move(amount){
   }
   var swanPos = swan.position();
   var hillPos = hill.position();
+  var backgroundPos = bkgd.position();
   var time = 2000*(amount/(maxScore/5));
   swan.animate({ top: swanPos.top + (amount/maxScore)*maxUp }, time);
   hill.animate({ left: hillPos.left + (amount/maxScore)*maxRight }, time);
-  bkgd.animate({ left: hillPos.left + (amount/maxScore)*maxRight }, time);
+  bkgd.animate({ left: backgroundPos.left + (amount/maxScore)*maxRight }, time);
   setTimeout(displayQuestion, time+200);
 }
 

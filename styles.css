@@ -31,8 +31,10 @@
 }
 
 #background{
-  top: calc(100% - 226px);
-  left: calc(50% + 25px);
+  top: -50vh;
+  left: 0;
+  width: 2000px;
+  height: 1000px;
 }
 
 #swan{
