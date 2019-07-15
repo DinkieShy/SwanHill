@@ -27,7 +27,7 @@
 
 #hill{
   top: calc(100% - 360px);
-  left: calc(50% + 25px);
+  left: calc(50% + 37.5px);
 }
 
 #background{
@@ -38,7 +38,7 @@
 }
 
 #swan{
-  top: calc(100% - 50px);
+  top: calc(100% - 75px);
   left: 50%;
 }
 
