@@ -1,17 +1,21 @@
 var swan;
 var hill;
 var bkgd;
-var maxScore = 770;
+var maxScore = 734;
 var maxUp = maxScore*Math.sin(16);
 var maxRight = maxScore*Math.cos(16);
 var currentScore = 0;
 
 var currentQuestion = 0;
 var questions = [
-  ["Question 1", 100, 200, 1000],
-  ["Question 2", 100, 200, 300],
-  ["Question 3", 100, 200, 300],
-  ["Question 4", 100, 200, 300]
+  ["Food", 93, 108, 124],
+  ["Social", 37, 52, 64],
+  ["Travel", 47, 54, 60],
+  ["Bills", 34, 44, 58],
+  ["Books", 10, 15, 20],
+  ["Clothes", 34, 40, 45],
+  ["Mobile Phone", 18, 24, 32],
+  ["Rent", 380, 406, 510]
 ];
 
 $(document).ready(function(){
