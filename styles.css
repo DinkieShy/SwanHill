@@ -86,6 +86,18 @@ button{
   margin-top: 20px;
 }
 
+.clouds{
+  width: 100vw;
+  float: left;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#sky{
+  width: 200vw !important;
+}
+
 body{
   margin: 0;
   overflow: hidden;

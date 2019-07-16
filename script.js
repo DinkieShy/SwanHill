@@ -24,6 +24,8 @@ $(document).ready(function(){
   hill = $('#hill');
   bkgd = $('#background');
 
+  scrollClouds();
+
   displayQuestion();
   $('button').click(function(){
     fadeOutQuestion();
@@ -32,6 +34,18 @@ $(document).ready(function(){
     currentScore += amount;
   });
 });
+
+function scrollClouds(){
+  var sky = $('#sky');
+  var time = 4000-3000*(currentScore/maxScore);
+  if(sky.position().left <= -window.innerWidth){
+    $('#sky').animate({ left: 0 }, 0);
+  }
+  else{
+    $('#sky').animate({ left: sky.position().left - 10 }, time, "linear");
+  }
+  setTimeout(scrollClouds, time);
+}
 
 function fadeOutQuestion(){
   $('#answer1').attr('disabled', true);
@@ -62,7 +76,7 @@ function move(amount){
   var time = 2000*(amount/(maxScore/5));
   swan.animate({ top: swanPos.top + (amount/maxScore)*maxUp }, time);
   hill.animate({ left: hillPos.left + (amount/maxScore)*maxRight }, time);
-  bkgd.animate({ left: backgroundPos.left + (amount/maxScore)*maxRight }, time);
+  //bkgd.animate({ left: backgroundPos.left + (amount/maxScore)*maxRight }, time);
   setTimeout(displayQuestion, time+200);
 }
 
