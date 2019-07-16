@@ -94,6 +94,7 @@ button{
 
 .clouds{
   width: 100vw;
+  min-height: 50vh;
   float: left;
   margin: 0;
   padding: 0;
@@ -166,6 +167,10 @@ button{
   min-height: 40px;
   background-color: #047E8B;
   bottom: 20px;
+}
+
+.disabled{
+  background-color: #747678 !important;
 }
 
 body{

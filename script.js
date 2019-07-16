@@ -5,6 +5,8 @@ var maxScore = 734;
 var maxUp = maxScore*Math.sin(16);
 var maxRight = maxScore*Math.cos(16);
 var currentScore = 0;
+var score = 0;
+var maxPoints = 30;
 
 var currentQuestion = 0;
 var questions = [
@@ -32,6 +34,15 @@ $(document).ready(function(){
     var amount = parseInt(this.innerHTML.slice(1));
     move(amount);
     currentScore += amount;
+  });
+
+  $('#retry').click(function(){
+    window.location.reload();
+  });
+
+  $('#submit').click(function(){
+    var input = parseQueryString(window.location.search.slice(1));
+    window.top.location = input.endURL + score;
   });
 });
 
@@ -81,7 +92,18 @@ function move(amount){
 }
 
 function showEndScreen(){
-  console.log("Complete!");
+  if(score > 0){
+    $('#resultText')[0].innerHTML = `Congratulations! You scored ${score} points!`;
+    $('#resultBody')[0].innerHTML = `Either press submit to earn points, or retry to try and earn some more!`;
+    $('#submit').removeAttr("disabled");
+    $('#submit').removeClass("disabled");
+  }
+  else{
+    $('#resultText')[0].innerHTML = `Oh no, you overspent and fell off!`;
+    $('#resultBody')[0].innerHTML = `Press retry to have another go!`;
+    $('#submit').attr("disabled", true);
+    $('#submit').addClass("disabled");
+  }
   $('#endScreen').animate({ left:0 }, 2000);
 }
 
@@ -114,7 +136,36 @@ function displayQuestion(){
     }
     else{
       //end
+      if(currentScore >= maxScore - 30){
+        score = maxPoints
+      }
+      else{
+        score = Math.round((currentScore/maxScore)*maxPoints);
+      }
       showEndScreen();
     }
   }
+}
+
+function parseQueryString(query) {
+  //From https://stackoverflow.com/questions/979975/how-to-get-the-value-from-the-get-parameters
+  var vars = query.split("&");
+  var query_string = {};
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split("=");
+    var key = decodeURIComponent(pair[0]);
+    var value = decodeURIComponent(pair[1]);
+    // If first entry with this name
+    if (typeof query_string[key] === "undefined") {
+      query_string[key] = decodeURIComponent(value);
+      // If second entry with this name
+    } else if (typeof query_string[key] === "string") {
+      var arr = [query_string[key], decodeURIComponent(value)];
+      query_string[key] = arr;
+      // If third or later entry with this name
+    } else {
+      query_string[key].push(decodeURIComponent(value));
+    }
+  }
+  return query_string;
 }
