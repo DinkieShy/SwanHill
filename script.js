@@ -8,12 +8,12 @@ var currentScore = 0;
 
 var currentQuestion = 0;
 var questions = [
-  ["Food", 93, 108, 124],
+  ["Food", 93, 108, 735],
   ["Social", 37, 52, 64],
   ["Travel", 47, 54, 60],
   ["Bills", 34, 44, 58],
   ["Books", 10, 15, 20],
-  ["Clothes", 34, 40, 45],
+  ["Clothes", 34, 41, 48],
   ["Mobile Phone", 18, 24, 32],
   ["Rent", 380, 406, 510]
 ];
@@ -27,7 +27,7 @@ $(document).ready(function(){
   scrollClouds();
 
   displayQuestion();
-  $('button').click(function(){
+  $('#questionSection button').click(function(){
     fadeOutQuestion();
     var amount = parseInt(this.innerHTML.slice(1));
     move(amount);
@@ -37,12 +37,12 @@ $(document).ready(function(){
 
 function scrollClouds(){
   var sky = $('#sky');
-  var time = 4000-3000*(currentScore/maxScore);
+  var time = 2000-1500*(currentScore/maxScore);
   if(sky.position().left <= -window.innerWidth){
     $('#sky').animate({ left: 0 }, 0);
   }
   else{
-    $('#sky').animate({ left: sky.position().left - 10 }, time, "linear");
+    $('#sky').animate({ left: sky.position().left - 15 }, time, "linear");
   }
   setTimeout(scrollClouds, time);
 }
@@ -74,24 +74,33 @@ function move(amount){
   var hillPos = hill.position();
   var backgroundPos = bkgd.position();
   var time = 2000*(amount/(maxScore/5));
-  swan.animate({ top: swanPos.top + (amount/maxScore)*maxUp }, time);
-  hill.animate({ left: hillPos.left + (amount/maxScore)*maxRight }, time);
+  swan.animate({ top: swanPos.top + ((amount/maxScore)*maxUp)/2 }, time);
+  hill.animate({ left: hillPos.left + (amount/maxScore)*maxRight, top: hillPos.top - ((amount/maxScore)*maxUp)/2 }, time);
   //bkgd.animate({ left: backgroundPos.left + (amount/maxScore)*maxRight }, time);
   setTimeout(displayQuestion, time+200);
+}
+
+function showEndScreen(){
+  console.log("Complete!");
+  $('#endScreen').animate({ left:0 }, 2000);
 }
 
 function displayQuestion(){
   if(currentScore > maxScore){
     console.log("score too high");
     var $elem = $('#swan');
-    $({deg: 0}).animate({deg: 720}, {
+    var topPos = $elem.position().top;
+    var leftPos = $elem.position().left;
+    $({deg: 0}).animate({deg: 1080}, {
         duration: 2000,
         step: function(now) {
             $elem.css({
                 transform: 'rotate(' + now + 'deg)',
-                top: now/2
+                top: topPos + now/4,
+                left: leftPos + now/10
             });
-        }
+        },
+        complete: showEndScreen
     });
   }
   else{
@@ -105,7 +114,7 @@ function displayQuestion(){
     }
     else{
       //end
-      console.log("Complete");
+      showEndScreen();
     }
   }
 }
