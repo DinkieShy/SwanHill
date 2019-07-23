@@ -42,7 +42,7 @@ $(document).ready(function(){
 
   $('#submit').click(function(){
     var input = parseQueryString(window.location.search.slice(1));
-    window.top.location = input.endURL + score;
+    this.parent.postMessage(score, '*');
   });
 });
 
