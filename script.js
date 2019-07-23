@@ -41,8 +41,8 @@ $(document).ready(function(){
   });
 
   $('#submit').click(function(){
-    var input = parseQueryString(window.location.search.slice(1));
-    this.parent.postMessage(score, '*');
+    var customEvent = new CustomEvent('iframeMessage', {data: score});
+    this.parent.dispatchEvent(customEvent);
   });
 });
 
